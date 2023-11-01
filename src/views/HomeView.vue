@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid container-box">
+  <div class="container-fluid" :class="currentTheme">
     <div class="d-flex justify-content-center align-items-center vh-100">
       <div class="inner-wrap px-2">
         <div class="d-flex justify-content-between first-row align-items-center">
@@ -13,24 +13,24 @@
                 <div class="fw-bold">3</div>
               </div>
               <div class="radio-wrap rounded-pill">
-                <input type="radio" class="me-2 form-check-input" checked>
-                <input type="radio" class="me-2 form-check-input">
-                <input type="radio" class=" form-check-input">
+                <input type="radio" class="me-2 form-check-input" :checked="currentTheme == 'theme1'? true : false" @click="switchTheme('theme1')">
+                <input type="radio" class="me-2 form-check-input" :checked="currentTheme == 'theme2'? true : false" @click="switchTheme('theme2')">
+                <input type="radio" class=" form-check-input" :checked="currentTheme == 'theme3'? true : false" @click="switchTheme('theme3')">
               </div>
             </div>
           </div>
         </div>
         <div class="row mt-2">
           <div class="col-12">
-            <div class="bg-dark p-3 custom-border">
-              <h2 class="text-light text-end mb-0 fw-bold">{{ outputTriggered || 0 }}</h2>
+            <div class="result-box p-3 custom-border">
+              <h2 class=" text-end mb-0 fw-bold">{{ outputTriggered || 0 }}</h2>
             </div>
           </div>
         </div>
         <div class="calculator-box custom-border mt-3 pt-0 p-3">
           <div class="row">
             <div class="col-3 g-3 text-center" v-for="input in inputs" :key="input">
-              <button type="button" class="btn custom-btn custom-border fw-bold" @click="calculate(input)">{{ input }}</button>
+              <button type="button" class="btn custom-btn custom-border fw-bold" :class="input == 'DEL' ? 'resetAndDelete' : ''" @click="calculate(input)">{{ input }}</button>
             </div>
           </div>
           <div class="row mt-3">
@@ -57,7 +57,8 @@ export default {
       currentValue : '',
       // operator : '',
       // preValue : '',
-      outputTriggered : ''
+      outputTriggered : '',
+      currentTheme : null
     }
   },
   methods : {
@@ -119,54 +120,229 @@ export default {
     reset(){
       this.currentValue = ''
       this.outputTriggered = ''
+    },
+    switchTheme(theme){
+      this.currentTheme = theme
     }
   },
-  
+  mounted(){
+    this.switchTheme('theme1')
+  }
 }
 </script>
-<style>
-.container-box{
+<style lang="scss">
+.theme1{
   background-color: var(--main-bg-color);
+
+  .inner-wrap{
+    width: 100%;
+    max-width: 400px;
+
+    .first-row{
+      color: white;
+
+      .radio-wrap{
+        background-color: hsla(0, 0%, 0%,0.3);
+        padding :  4px 8px 1px;
+
+        .form-check-input{
+          width : 13px!important;
+          height : 13px!important;
+          background-color: transparent!important;
+          border-color: transparent!important;
+
+          &:checked{
+            background-color: rgb(219, 4, 4)!important;
+            background-image: none!important;
+          }
+          &:focus{
+            box-shadow: none!important;
+          }
+        }
+      }
+    }
+
+    .result-box{
+      background-color: black;
+      color : white;
+    }
+
+    .custom-border{
+      border-radius: 5px;
+    }
+
+    .calculator-box {
+      background-color: rgba(0, 0, 0, 0.3);
+      width: 100%;
+
+      .custom-btn{
+        background-color: white!important;
+        color: var(--main-bg-color)!important;
+        width: 100%;
+        max-width : 70px;
+        font-size : 20px!important;
+      }
+
+      .resetAndDelete{
+        background-color: hsl(224, 26%, 45%)!important;
+        color: white!important;
+        font-size : 20px!important;
+      }
+
+      .custom-font{
+        font-size : 20px!important;
+      }
+    
+    }
+
+    
+  }
 }
-.inner-wrap{
-  width: 100%;
-  max-width: 400px;
+
+
+.theme2{
+  background-color : #205b7a;
+
+  .inner-wrap{
+    width: 100%;
+    max-width: 400px;
+
+    .first-row{
+      color: white;
+
+      .radio-wrap{
+        background-color: hsla(0, 0%, 0%,0.3);
+        padding :  4px 8px 1px;
+
+        .form-check-input{
+          width : 13px!important;
+          height : 13px!important;
+          background-color: transparent!important;
+          border-color: transparent!important;
+
+          &:checked{
+            background-color: yellow!important;
+            background-image: none!important;
+          }
+          &:focus{
+            box-shadow: none!important;
+          }
+        }
+      }
+    }
+
+    .result-box{
+      background-color: #a2bbcf;
+      color : #142f44;
+    }
+
+    .custom-border{
+      border-radius: 5px;
+    }
+
+    .calculator-box {
+      background-color: rgba(0, 0, 0, 0.3);
+      width: 100%;
+
+      .custom-btn{
+        background-color: #a2bbcf!important;
+        color: #142f44!important;
+        width: 100%;
+        max-width : 70px;
+        font-size : 20px!important;
+      }
+
+      .resetAndDelete{
+        background-color: yellow!important;
+        color: #142f44!important;
+        font-size : 20px!important;
+      }
+
+      .custom-font{
+        font-size : 20px!important;
+      }
+    
+    }
+
+    
+  }
 }
-.first-row{
-  color: white;
+
+.theme2{
+  background-color : #205b7a;
+
+  .inner-wrap{
+    width: 100%;
+    max-width: 400px;
+
+    .first-row{
+      color: white;
+
+      .radio-wrap{
+        background-color: hsla(0, 0%, 0%,0.3);
+        padding :  4px 8px 1px;
+
+        .form-check-input{
+          width : 13px!important;
+          height : 13px!important;
+          background-color: transparent!important;
+          border-color: transparent!important;
+
+          &:checked{
+            background-color: yellow!important;
+            background-image: none!important;
+          }
+          &:focus{
+            box-shadow: none!important;
+          }
+        }
+      }
+    }
+
+    .result-box{
+      background-color: #a2bbcf;
+      color : #142f44;
+    }
+
+    .custom-border{
+      border-radius: 5px;
+    }
+
+    .calculator-box {
+      background-color: rgba(0, 0, 0, 0.3);
+      width: 100%;
+
+      .custom-btn{
+        background-color: #a2bbcf!important;
+        color: #142f44!important;
+        width: 100%;
+        max-width : 70px;
+        font-size : 20px!important;
+      }
+
+      .resetAndDelete{
+        background-color: yellow!important;
+        color: #142f44!important;
+        font-size : 20px!important;
+      }
+
+      .custom-font{
+        font-size : 20px!important;
+      }
+    
+    }
+
+    
+  }
 }
-.custom-border{
-  border-radius: 5px;
-}
-.custom-btn{
-  background-color: white!important;
-  color: var(--main-bg-color)!important;
-  width: 100%;
-  max-width : 70px;
-  font-size : 20px!important;
-}
-.calculator-box {
-  background-color: rgba(0, 0, 0, 0.3);
-  width: 100%;
- 
-}
-.resetAndDelete{
-  background-color: hsl(224, 26%, 45%)!important;
-  color: white!important;
-  font-size : 20px!important;
-}
-.custom-font{
-  font-size : 20px!important;
-}
-.form-check-input{
-  width : 13px!important;
-  height : 13px!important;
-  background-color: red!important;
-  border-color: red!important;
-}
-.radio-wrap{
-  background-color: hsla(0, 0%, 0%,0.3);
-  padding :  4px 8px 1px;
-}
+
+
+
+
+
+
+
+
+
 </style>
 
