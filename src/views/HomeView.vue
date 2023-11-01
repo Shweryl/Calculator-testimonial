@@ -208,7 +208,7 @@ export default {
     max-width: 400px;
 
     .first-row{
-      color: white;
+      color: #a2bbcf;
 
       .radio-wrap{
         background-color: hsla(0, 0%, 0%,0.3);
@@ -268,18 +268,18 @@ export default {
   }
 }
 
-.theme2{
-  background-color : #205b7a;
+.theme3{
+  background-color : #B7CE63;
 
   .inner-wrap{
     width: 100%;
     max-width: 400px;
 
     .first-row{
-      color: white;
+      color: #4B5842;
 
       .radio-wrap{
-        background-color: hsla(0, 0%, 0%,0.3);
+        background-color: hsla(0, 0%, 0%,0.5);
         padding :  4px 8px 1px;
 
         .form-check-input{
@@ -289,7 +289,7 @@ export default {
           border-color: transparent!important;
 
           &:checked{
-            background-color: yellow!important;
+            background-color: #B7CE63!important;
             background-image: none!important;
           }
           &:focus{
@@ -300,8 +300,8 @@ export default {
     }
 
     .result-box{
-      background-color: #a2bbcf;
-      color : #142f44;
+      background-color: #4B5842;
+      color : #DADDD8;
     }
 
     .custom-border{
@@ -309,20 +309,20 @@ export default {
     }
 
     .calculator-box {
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.5);
       width: 100%;
 
       .custom-btn{
-        background-color: #a2bbcf!important;
-        color: #142f44!important;
+        background-color: #DADDD8!important;
+        color: #8FB339!important;
         width: 100%;
         max-width : 70px;
         font-size : 20px!important;
       }
 
       .resetAndDelete{
-        background-color: yellow!important;
-        color: #142f44!important;
+        background-color: #B7CE63!important;
+        color: #4B5842!important;
         font-size : 20px!important;
       }
 
